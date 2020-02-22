@@ -1,0 +1,16 @@
+from __future__ import print_function
+sl = {}
+for _ in range(input()):
+    a = raw_input()
+    s = float(raw_input())
+    if s in sl:
+        sl[s].append(a)
+    else:
+        sl[s] = [a]
+new_list = []
+for i in sl:
+    new_list.append([i, sl[i]])
+new_list.sort()
+result = new_list[1][1]
+result.sort()
+print (*result, sep = "\n")
