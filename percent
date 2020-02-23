@@ -1,0 +1,11 @@
+if __name__ == '__main__':
+    n = int(raw_input())
+    student_marks = {}
+    for _ in range(n):
+        line = raw_input().split()
+        name, scores = line[0], line[1:]
+        scores = map(float, scores)
+        student_marks[name] = scores
+    nm = raw_input()
+    scr = student_marks[nm]
+    print("{0:.2f}".format(sum(scr)/(len(scr))))
