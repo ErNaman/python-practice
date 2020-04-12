@@ -1,0 +1,10 @@
+def search_binary(xs,target):
+    count = 0
+    for i in xs:
+        if i == target:
+            return count
+            count = count +1
+        else:
+            count = count +1
+            continue
+    return -1
