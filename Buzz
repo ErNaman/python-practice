@@ -1,0 +1,13 @@
+def buzzfizz(number):
+if number == 0:
+return number
+elif number / 3 == (round(number / 3)) and number / 5 == (round(number / 5)):
+print(“Buzzfizz”)
+elif number / 3 == (round(number / 3)):
+print(“Buzz”)
+elif number / 5 == (round(number / 5)):
+print(“Fizz”)
+else:
+return number
+
+print(buzzfizz(15))
