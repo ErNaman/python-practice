@@ -1,0 +1,7 @@
+test_list = [(4, 6), (2, ), (3, 8, 9)]
+temp = [] 
+for sub in test_list: 
+  for ele in sub: 
+    temp.append(ele) 
+res = reduce(lambda x, y: x ^ y, temp)  
+print("The Bitwise XOR of records list elements are : " + str(res))
