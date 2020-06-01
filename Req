@@ -1,0 +1,7 @@
+import requests
+url = 'http://YOUR-APIC-EMController/api/v0/host'
+
+response = requests.get(url)
+
+# print the json that is returned
+print response.text
