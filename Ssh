@@ -1,0 +1,45 @@
+I'm using python 3.6 on Windows, the below works for me and should work in 2.6 as well. Your router probably requires a password for enable mode as well, hence the error. Try the below and let me if it works. I also use a sleep timer as sometimes the connection to the remote is a bit slow.
+
+import time, sys, getpass, paramiko
+
+ip = input('Please enter the IpAddress of the host:')
+username = input("Please enter username:")
+password = getpass.getpass('Please enter a password:')
+
+output = ""
+# Create a new instance of an sshclient
+client = paramiko.SSHClient()
+# Set the missing host key policy to auto add the certificate
+client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+client.connect(hostname=ip, username=username, password=password)
+remote_conn = client.invoke_shell()
+print("Interactive session established with {0}\n".format(ip))
+remote_conn.send('\n')
+remote_conn.send('enable\n')
+time.sleep(1)
+en_password = password + '\n'
+#Ensure you send the enable password
+remote_conn.send(en_password)
+time.sleep(1)
+print("{0}:Getting to enable mode was a success....".format(ip))
+remote_conn.send("term len 0\n")
+time.sleep(1)
+output = remote_conn.recv(50000)
+#Flush the output
+output = ""
+#Send a command
+remote_conn.send("sh run | i snmp\n")
+#wait a couple of seconds
+time.sleep(5)
+output = remote_conn.recv(50000)
+print(output)
+share improve this answer  follow
+answered
+Jun 9 '18 at 8:00
+
+Pieter du Toit
+46●22 bronze badges
+Your Answer
+
+Body
+ Add picture
